@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actitud Lux | Recursos para la Nueva Generación</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --lux-dark: #1a1a1a;
+            --lux-light: #f4f6f9;
+            --lux-yellow: #ffc107;
+            --lux-blue: #0056b3;
+            
+            /* Colores de sección */
+            --theme-kids: #ff6b6b;
+            --theme-kids-bg: #fff5f5;
+            --theme-teens: #6c5ce7;
+            --theme-teens-bg: #f3f0ff;
+        }
+
+        body { font-family: 'Nunito', sans-serif; background-color: var(--lux-light); color: #333; }
+        h1, h2, h3, h4, .font-poppins { font-family: 'Poppins', sans-serif; font-weight: 800; }
+
+        /* Navbar */
+        .navbar { background-color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 15px 0; }
+        .navbar-brand { font-size: 1.6rem; color: var(--lux-dark) !important; }
+        .navbar-brand span { color: var(--lux-yellow); }
+
+        /* Hero General */
+        .hero-main {
+            background: linear-gradient(135deg, var(--lux-dark) 0%, #2d3436 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            border-bottom: 5px solid var(--lux-yellow);
+        }
+
+        /* Selector de Portales (Tabs) */
+        .portal-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+        .portal-btn {
+            background: white;
+            border: 2px solid transparent;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #555;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .portal-btn i { margin-right: 8px; font-size: 1.3rem; }
+        .portal-btn:hover { transform: translateY(-5px); }
+        
+        /* Estados Activos de los Botones */
+        .portal-btn.active-general { background: var(--lux-dark); color: white; }
+        .portal-btn.active-kids { background: var(--theme-kids); color: white; box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); }
+        .portal-btn.active-teens { background: var(--theme-teens); color: white; box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3); }
+
+        /* Contenedores de Vistas */
+        .tab-content { padding: 60px 0; min-height: 50vh; transition: background-color 0.5s; }
+        
+        /* Tarjetas de Recursos */
+        .resource-card {
+            background: white; border-radius: 24px; border: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            transition: 0.3s; height: 100%; overflow: hidden;
+            position: relative;
+        }
+        .resource-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .resource-card img { height: 220px; width: 100%; object-fit: cover; }
+        .card-body { padding: 30px; }
+        .badge-cat { padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; color: white; }
+        
+        .btn-action { background: transparent; border: none; padding: 0; font-weight: 800; font-size: 1rem; display: flex; align-items: center; gap: 8px; margin-top: 15px; }
+        .btn-action:hover { opacity: 0.8; }
+
+        /* Footer */
+        footer { background-color: var(--lux-dark); color: white; padding: 60px 0 20px; }
+        footer p { color: #aaa; }
+        footer h4 { color: white; border-bottom: 2px solid var(--lux-yellow); display: inline-block; padding-bottom: 5px; margin-bottom: 20px; font-size: 1.2rem;}
+        .social-link { color: var(--lux-yellow); font-size: 1.5rem; margin-right: 15px; transition: 0.3s; }
+        .social-link:hover { color: white; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand font-poppins" href="#"><i class="bi bi-brightness-high-fill text-warning"></i> Actitud<span>Lux</span></a>
+            <a href="#contacto" class="btn btn-dark rounded-pill px-4 fw-bold d-none d-md-block">Contacto</a>
+        </div>
+    </nav>
+
+    <header class="hero-main">
+        <div class="container" data-aos="zoom-in">
+            <h1 class="display-4 mb-3">Materiales con <span class="text-warning">Contexto.</span></h1>
+            <p class="lead fw-light mx-auto" style="max-width: 700px;">
+                No solo traducimos recursos. Creamos herramientas pensadas en la realidad de nuestros niños y adolescentes de hoy.
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="portal-nav nav nav-pills" id="pills-tab" role="tablist">
+            <button class="portal-btn active active-general nav-link" id="pills-institucion-tab" data-bs-toggle="pill" data-bs-target="#pills-institucion" type="button" role="tab" onclick="changeBg('var(--lux-light)')">
+                <i class="bi bi-house-door-fill"></i> ¿Qué es Actitud Lux?
+            </button>
+            <button class="portal-btn nav-link" id="pills-ninos-tab" data-bs-toggle="pill" data-bs-target="#pills-ninos" type="button" role="tab" onclick="changeBg('var(--theme-kids-bg)')">
+                <i class="bi bi-balloon-fill text-danger"></i> Actitud Kids
+            </button>
+            <button class="portal-btn nav-link" id="pills-teens-tab" data-bs-toggle="pill" data-bs-target="#pills-teens" type="button" role="tab" onclick="changeBg('var(--theme-teens-bg)')">
+                <i class="bi bi-lightning-charge-fill" style="color: #6c5ce7;"></i> Actitud Teens
+            </button>
+        </div>
+    </div>
+
+    <div class="tab-content" id="pills-tabContent">
+        
+        <div class="tab-pane fade show active" id="pills-institucion" role="tabpanel">
+            <div class="container text-center" data-aos="fade-up">
+                <h2 class="mb-4">Nuestra Misión</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <p class="fs-5 text-muted mb-5">
+                            <strong>Actitud Lux</strong> es una institución social sin fines de lucro dedicada a equipar a padres, mentores y líderes juveniles. Entendemos que los desafíos de un niño en nuestra ciudad no son los mismos que en otro continente. Por eso, diseñamos materiales didácticos, guías de estudio y contenido multimedia <strong>100% contextualizado a nuestra cultura y realidad social.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row g-4 mt-2">
+                    <div class="col-md-4">
+                        <i class="bi bi-book text-warning display-4"></i>
+                        <h4 class="mt-3">Material Propio</h4>
+                        <p class="text-muted small">Lecciones y guías creadas por educadores y psicólogos locales.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="bi bi-people display-4 text-primary"></i>
+                        <h4 class="mt-3">Comunidad</h4>
+                        <p class="text-muted small">Red de apoyo para quienes trabajan guiando a las nuevas generaciones.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="bi bi-phone display-4 text-success"></i>
+                        <h4 class="mt-3">Formatos Actuales</h4>
+                        <p class="text-muted small">Desde PDFs imprimibles hasta videos cortos y podcasts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-ninos" role="tabpanel">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 style="color: var(--theme-kids);">Recursos para Niños (4 a 11 años)</h2>
+                    <p class="text-muted">Aprender jugando con propósito.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="resource-card border-bottom border-danger border-4">
+                            <img src="https://images.pexels.com/photos/8612920/pexels-photo-8612920.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Kids">
+                            <div class="card-body">
+                                <span class="badge-cat" style="background-color: var(--theme-kids);">Clase Práctica</span>
+                                <h4>El Escudo del Respeto</h4>
+                                <p class="text-muted small">Dinámica para escuelas o grupos sobre cómo prevenir el bullying en el aula de forma didáctica.</p>
+                                <button class="btn-action" style="color: var(--theme-kids);" data-bs-toggle="modal" data-bs-target="#contentModal">
+                                    Abrir Material <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card border-bottom border-warning border-4">
+                            <img src="https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Padres">
+                            <div class="card-body">
+                                <span class="badge-cat bg-warning text-dark">Para Padres</span>
+                                <h4>Menos Pantallas, Más Charlas</h4>
+                                <p class="text-muted small">Guía práctica para padres sobre cómo establecer límites saludables con la tecnología en casa.</p>
+                                <button class="btn-action text-warning" data-bs-toggle="modal" data-bs-target="#contentModal">
+                                    Leer Guía <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-teens" role="tabpanel">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 style="color: var(--theme-teens);">Recursos para Teens (12 a 18 años)</h2>
+                    <p class="text-muted">Identidad clara en un mundo ruidoso.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="resource-card border-bottom border-4" style="border-color: var(--theme-teens) !important;">
+                            <img src="https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Teens">
+                            <div class="card-body">
+                                <span class="badge-cat" style="background-color: var(--theme-teens);">Estudio Juvenil</span>
+                                <h4>Ansiedad y Futuro</h4>
+                                <p class="text-muted small">Material de debate para grupos juveniles sobre cómo manejar la presión académica y social actual.</p>
+                                <button class="btn-action" style="color: var(--theme-teens);" data-bs-toggle="modal" data-bs-target="#contentModal">
+                                    Ver Material <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mb-4">
+                    <h3 class="font-poppins text-white"><i class="bi bi-brightness-high-fill text-warning"></i> Actitud<span class="text-warning">Lux</span></h3>
+                    <p class="mt-3 pe-md-4">Equipando a la próxima generación con identidad, propósito y valores contextualizados a nuestra realidad local.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Contacto</h4>
+                    <p class="mb-1"><i class="bi bi-geo-alt-fill text-warning me-2"></i> Base en La Paz, Bolivia</p>
+                    <p class="mb-1"><i class="bi bi-envelope-fill text-warning me-2"></i> info@actitudlux.org</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Comunidad</h4>
+                    <div class="d-flex mt-3">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 pt-4 border-top border-secondary">
+                <p class="small m-0">&copy; 2026 Actitud Lux. Institución sin fines de lucro.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="contentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 pb-0 pt-4 px-4">
+                    <h4 class="modal-title font-poppins text-dark">Vista Previa del Material</h4>
+                    <button type="button" class="btn-close bg-light rounded-circle p-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-4">
+                    <div class="bg-light p-4 rounded-3 text-center mb-4">
+                        <i class="bi bi-file-earmark-text display-1 text-secondary opacity-50"></i>
+                        <h5 class="mt-3 fw-bold text-dark">Material Contextualizado - Actitud Lux</h5>
+                        <p class="text-muted">Aquí se cargará el PDF, el video o el texto del recurso seleccionado sin necesidad de abrir nuevas ventanas.</p>
+                    </div>
+                    <p class="text-dark"><strong>Instrucciones de uso:</strong> Este material está diseñado para ser usado en grupos pequeños, aulas o en casa.</p>
+                    <ul>
+                        <li>Tiempo estimado: 45 minutos.</li>
+                        <li>Materiales necesarios: Pizarra, marcadores, hojas.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-0 px-4 pb-4">
+                    <button type="button" class="btn btn-dark rounded-pill px-4 fw-bold"><i class="bi bi-download"></i> Descargar PDF Completo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Lógica para el Single Page App (Cambio de colores de fondo y botones)
+        function changeBg(color) {
+            // Cambiar color de fondo del contenedor
+            document.querySelector('.tab-content').style.backgroundColor = color;
+            
+            // Actualizar clases de los botones para dar feedback visual
+            const buttons = document.querySelectorAll('.portal-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active-general', 'active-kids', 'active-teens');
+                
+                if(btn.classList.contains('active')) {
+                    if(btn.id === 'pills-institucion-tab') btn.classList.add('active-general');
+                    if(btn.id === 'pills-ninos-tab') btn.classList.add('active-kids');
+                    if(btn.id === 'pills-teens-tab') btn.classList.add('active-teens');
+                }
+            });
+        }
+
+        // Event listener automático de Bootstrap para actualizar botones al hacer clic
+        document.querySelectorAll('button[data-bs-toggle="pill"]').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function (event) {
+                // Dispara el onclick de nuevo para asegurar que los estilos apliquen
+                event.target.onclick();
+            })
+        });
+    </script>
+</body>
+</html>
